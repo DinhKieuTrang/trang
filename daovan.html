@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plagiarism Checker</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('https://img.freepik.com/free-photo/different-shape-flower-cutout-with-copy-space-background_23-2148188405.jpg');
+            background-size: cover;
+            padding-top: 20px;
+        }
+        .container {
+            max-width: 900px;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .result {
+            margin-top: 20px;
+        }
+        .similarity {
+            font-size: 2em;
+            font-weight: bold;
+            color:rgb(113, 0, 23)
+        }
+        .text-columns {
+            display: flex;
+            justify-content: space-between;
+        }
+        .text-columns pre {
+            width: 48%;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+        }
+    </style>
+    <script>
+        function showInputFields(type, num) {
+            const textField = document.getElementById(`text${num}Field`);
+            const fileField = document.getElementById(`file${num}Field`);
+            const urlField = document.getElementById(`url${num}Field`);
+            
+            textField.style.display = 'none';
+            fileField.style.display = 'none';
+            urlField.style.display = 'none';
+
+            if (type === 'text') {
+                textField.style.display = 'block';
+            } else if (type === 'file') {
+                fileField.style.display = 'block';
+            } else if (type === 'url') {
+                urlField.style.display = 'block';
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="text-center">Plagiarism Checker</h1>
+        <form method="POST" enctype="multipart/form-data">
+            <h4>Input Text 1</h4>
+            <div class="form-group">
+                <label for="inputType1">Select input type</label>
+                <select class="form-control" id="inputType1" name="inputType1" onchange="showInputFields(this.value, 1)">
+                    <option value="text">Enter Text</option>
+                    <option value="file">Upload a file</option>
+                    <option value="url">Enter URL</option>
+                </select>
+            </div>
+            <div class="form-group" id="text1Field">
+                <label for="text1">Text 1</label>
+                <textarea class="form-control" id="text1" name="text1" rows="5" placeholder="Enter text to check"></textarea>
+            </div>
+            <div class="form-group" id="file1Field" style="display: none;">
+                <label for="file1">Upload file</label>
+                <input type="file" class="form-control-file" id="file1" name="file1">
+            </div>
+            <div class="form-group" id="url1Field" style="display: none;">
+                <label for="url1">URL 1</label>
+                <input type="text" class="form-control" id="url1" name="url1" placeholder="Enter URL 1">
+            </div>
+            <hr>
+            <h4>Compare With Text 2</h4>
+            <div class="form-group">
+                <label for="inputType2">Select input type</label>
+                <select class="form-control" id="inputType2" name="inputType2" onchange="showInputFields(this.value, 2)">
+                    <option value="text">Enter Text</option>
+                    <option value="file">Upload a file</option>
+                    <option value="url">Enter URL</option>
+                </select>
+            </div>
+            <div class="form-group" id="text2Field">
+                <label for="text2">Text 2</label>
+                <textarea class="form-control" id="text2" name="text2" rows="5" placeholder="Enter text to compare with"></textarea>
+            </div>
+            <div class="form-group" id="file2Field" style="display: none;">
+                <label for="file2">Upload file</label>
+                <input type="file" class="form-control-file" id="file2" name="file2">
+            </div>
+            <div class="form-group" id="url2Field" style="display: none;">
+                <label for="url2">URL 2</label>
+                <input type="text" class="form-control" id="url2" name="url2" placeholder="Enter URL 2">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Check Similarity</button>
+            <button type="submit" class="btn btn-primary btn-block">Reset</button>
+        </form>
+        
+        {% if similarity_percentage is not none %}
+        <div class="result text-center">
+            <p class="similarity">Similarity: {{ similarity_percentage }}%</p>
+            <div class="text-columns">
+                <div>
+                    <h4>Text 1:</h4>
+                    <pre>{{ text1 }}</pre>
+                </div>
+                <div>
+                    <h4>Text 2:</h4>
+                    <pre>{{ text2 }}</pre>
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+
+
+
+
+
+<div class="clearfix"></div>
+<div class="col-md-12 col-sm-12 col-xs-12 pn mb20">
+<div class="col-md-12 sec_imp text-center">
+<h2 style="font-size: 30px !important;font-weight:700;">Kiểm tra đạo văn</h2>
+<p>Cụ thể, việc kiểm tra đạo văn hoặc phát hiện sự tương tự của nội dung là một quá trình xác định sự xuất hiện của đạo văn hoặc vi phạm bản quyền trong một tác phẩm nội dung dành cho nhà văn, giáo viên, blogger sinh viên, quản trị viên web hoặc bất kỳ tài liệu nào.</p>
+<h3 style="font-size: 30px !important;font-weight:700">Những gì chúng tôi cung cấp!</h3>
+</div>
+<div class="col-xs-12 pn">
+<div class="col-md-6 col-xs-12 main-contactSection">
+<div class="aligment-class">
+<img loading="lazy" class="heding_image" src="https://www.duplichecker.com/asets/whatweoffer/Multiple-Uploading-Options.svg" alt height="60px" width="60px">
+<strong data-toggle="tooltip" data-placement="top" title="Nhiều định dạng tệp on top">Nhiều định dạng tệp</strong>
+<span class="first-before"></span>
+</div>
+<div class="col-xs-12 listing-aligned">
+<div class="table-responsive">
+<table class="table db">
+<tbody>
+<tr>
+<td>Sử dụng nhiều cách tải lên văn bản.</td>
+</tr>
+<tr>
+<td>Dán sao chép đơn giản trong vùng văn bản.</td>
+</tr>
+<tr>
+<td>Tải lên thông qua thiết bị hoặc bộ nhớ đám mây.</td>
+</tr>
+<tr>
+<td>Hỗ trợ 7 định dạng của tài liệu.</td>
+</tr>
+<tr>
+<td>Không giới hạn định dạng tài liệu.</td>
+</tr>
+<tr>
+<td style="border-bottom:0px;">.tex, .txt, .doc, .docx, .odt, .pdf và .rtf</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="col-md-6 col-xs-12 main-contactSection">
+<div class="aligment-class ">
+<img loading="lazy" class="heding_image" src="https://www.duplichecker.com/asets/whatweoffer/Results-in-Percentage.svg" alt height="60px" width="60px">
+<strong data-toggle="tooltip" data-placement="top" title="Kết quả theo phần trăm on top">Kết quả theo phần trăm</strong>
+</div>
+<div class="col-xs-12 listing-aligned">
+<div class="table-responsive">
+<table class="table">
+<tbody>
+<tr>
+<td>Mang đến sự thoải mái tuyệt đối cho người dùng.</td>
+</tr>
+<tr>
+<td>Tỷ lệ nội dung duy nhất theo tỷ lệ phần trăm.</td>
+</tr>
+<tr>
+<td>Làm rõ các tài nguyên bị ăn cắp thông tin về số lượng.</td>
+</tr>
+<tr>
+<td>Tỷ lệ chính xác nhất phần mềm check đạo văn.</td>
+</tr>
+<tr>
+<td>Nhấp vào "Làm cho nó trở thành duy nhất" để xóa đạo văn.</td>
+</tr>
+<tr>
+<td style="border-bottom:0px;">Phát hiện đối sánh tốt nhất.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="col-xs-12 pn">
+<div class="col-md-6 col-xs-12 main-contactSection  second-fromSection">
+<div class="aligment-class">
+<img loading="lazy" class="heding_image" src="https://www.duplichecker.com/asets/whatweoffer/Privacy-Guaranteed.svg" alt height="60px" width="60px">
+<strong data-toggle="tooltip" data-placement="top" title="Bảo đảm quyền riêng tư on top">Bảo đảm quyền riêng tư</strong>
+<span class="first-before"></span>
+</div>
+<div class="col-xs-12 listing-aligned">
+<div class="table-responsive">
+<table class="table">
+<tbody>
+<tr>
+<td> phần mềm kiểm tra đạo văn với 100% quyền riêng tư.</td>
+</tr>
+<tr>
+<td>Không lưu bất kỳ tài liệu đã tải lên nào.</td>
+</tr>
+<tr>
+<td>Rác rưởi nội dung sau khi kiểm tra đạo văn.</td>
+</tr>
+<tr>
+<td>Không có rủi ro rò rỉ dữ liệu.</td>
+</tr>
+<tr>
+<td>Bảo vệ quyền riêng tư và bảo mật của nội dung.</td>
+</tr>
+<tr>
+<td style="border-bottom:0px;">Tiết lộ kết quả tốt nhất.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="col-md-6 col-xs-12 main-contactSection second-fromSection">
+<div class="aligment-class">
+<img loading="lazy" class="heding_image" src="https://www.duplichecker.com/asets/whatweoffer/AI-Based-Technology.svg" alt height="60px" width="60px">
+<strong data-toggle="tooltip" data-placement="top" title="Công nghệ dựa trên AI on top">Công nghệ dựa trên AI</strong>
+</div>
+<div class="col-xs-12 listing-aligned">
+<div class="table-responsive">
+<table class="table">
+<tbody>
+<tr>
+<td>Công cụ được phát triển bằng công nghệ AI.</td>
+</tr>
+<tr>
+<td>Không chỉ chọn nội dung phù hợp chính xác.</td>
+</tr>
+<tr>
+<td>Phát hiện dấu vết nhỏ của đạo văn.</td>
+</tr>
+<tr>
+<td>Nội dung được diễn giải cũng có thể được xác định.</td>
+</tr>
+<tr>
+<td>Tốt nhất phần mềm đạo văn để bắt được sự trùng lặp.</td>
+</tr>
+<tr>
+<td style="border-bottom:0px;">So sánh nội dung với hàng triệu nguồn.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<div class="col-xs-12 pn">
+<div class="col-md-6 col-xs-12 main-contactSection  second-fromSection">
+<div class="aligment-class">
+<img loading="lazy" class="heding_image" src="https://www.duplichecker.com/asets/whatweoffer/Lightning-Fast-Results.svg" alt height="60px" width="60px">
+<strong data-toggle="tooltip" data-placement="top" title="Hỗ trợ đa ngôn ngữ on top">Hỗ trợ đa ngôn ngữ</strong>
+<span class="first-before"></span>
+</div>
+<div class="col-xs-12 listing-aligned">
+<div class="table-responsive">
+<table class="table">
+<tbody>
+<tr>
+<td> Sử dụng trên toàn thế giới với người dùng đa ngôn ngữ.</td>
+</tr>
+<tr>
+<td>kiểm tra đạo văn online bằng nhiều ngôn ngữ khác nhau.</td>
+</tr>
+<tr>
+<td>Hoạt động với 7 ngôn ngữ khác nhau.</td>
+</tr>
+<tr>
+<td>Hỗ trợ tiếng Tây Ban Nha, tiếng Nga, tiếng Bồ Đào Nha,</td>
+</tr>
+<tr>
+<td>Tiếng Hà Lan, Indonesia, Ý và Ả Rập.</td>
+</tr>
+<tr>
+<td style="border-bottom:0px;">Check đạo văn, các trang web, tài liệu nghiên cứu, v.v.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+
+
+
+<div class="px-3 py-5 cop_bg">
+<div class="main_area mx-auto hiw mt-4 mtc mb-5">
+<h2 class="hiw_heading text-center fw_700">Hậu Quả Của Đạo Văn</h2>
+<div class="hiw_htxt mx-auto text-center mb-5 fw_500">Không có bất kỳ sự chậm trễ nào, hãy điểm qua tất cả những ảnh hưởng có thể có mà bạn sẽ phải đối mặt nếu sao chép:</div>
+<div class="row align-items-center mx-0">
+<div class="col-md-6 academic"><img src="https://plagiarismdetector.net/pd-imgs/cop-img1.svg" alt="logo" class="pr-lg-5 img-fluid" loading="lazy" width="571" height="520"></div>
+<div class="col-md-6">
+<h2 class="hiw_box_t mb-3 fw_600 mt-4">Thuộc Về Lý Thuyết</h2>
+<p>Ngày nay, vi phạm bản quyền đã trở thành một vấn đề thường xuyên trong các cơ sở giáo dục khi học sinh tạo ra nhiều bài tập sử dụng một lượng lớn nghiên cứu trong một khoảng thời gian nhỏ. Nhiều trường học / tổ chức như Đại học Duke, có các cơ quan như Văn phòng Tư pháp sẽ xử lý mọi trường hợp đạo văn và giải quyết một hình phạt. Những vi phạm nhỏ có thể dẫn đến việc bị điểm 0 trong bài tập cụ thể đó, trong khi vi phạm nghiêm trọng thậm chí có thể bị đuổi học hoặc đình chỉ. Dù thế nào đi nữa, việc đạo văn cũng khiến học sinh xấu hổ và sẽ phải xem xét kỹ lưỡng các bài tập trong tương lai của mình hơn tất cả các học sinh khác. Do đó, xác nhận ít nhất một lần từ kiểm tra đạo văn miễn phí là một cách tiếp cận an toàn hơn.</p>
+</div>
+</div>
+<div class="row align-items-center mx-0">
+<div class="col-md-6 i_order2">
+<h2 class="hiw_box_t mb-3 fw_600 mt-4">Riêng Tư</h2>
+<p>Hầu hết các kết quả của <a href="https://plagiarismdetector.net/blog/occurrence-of-plagiarism/" class="linksclrs">đạo văn xảy ra </a> khi việc sao chép bị bắt gặp, nhưng các kết quả cá nhân xảy ra bất chấp bất kỳ sự can dự nào từ bên ngoài. Khi thảo luận về việc sao chép, các học viện đã lưu ý rằng các sinh viên sao chép dữ liệu không học được nhiều nghiên cứu cũng như các kỹ năng viết mà học viện được cho là đã dạy họ. Một khi họ rời khỏi trường, tất cả những sinh viên đó không có khả năng tạo ra nội dung gốc, vì trước đó họ chỉ gian lận. Hơn nữa, việc ăn cắp ý tưởng cũng có một tác động tâm lý, vì việc liên tục nói dối và lừa dối có thể phải trả giá bằng tâm lý. Làm một test đạo văn cũng giúp chúng ta tránh xa những tình huống như vậy vì chúng ta có thể sửa đổi cộng với đọc những gì chúng ta đã viết.</p>
+</div>
+<div class="col-md-6 i_order1 text-right personal"><img src="https://plagiarismdetector.net/pd-imgs/cop-img2.svg" alt="logo" class="pl-lg-5 img-fluid" loading="lazy" width="690" height="453"></div>
+</div>
+<div class="row align-items-center mx-0">
+<div class="col-md-6 professional"><img src="https://plagiarismdetector.net/pd-imgs/cop-img3.svg" alt="logo" class="pr-lg-5 img-fluid" loading="lazy" width="628" height="429"></div>
+<div class="col-md-6">
+<h2 class="hiw_box_t mb-3 fw_600 mt-4">Cao Thủ</h2>
+<p>Mười mười nhà báo, học giả, nhà văn và người sáng tạo đã có chuyên môn của họ cùng với danh tiếng cá nhân bị hủy hoại vì cáo buộc sao chép tài liệu. Người đạo văn không chỉ khiến công việc đang thực hiện của họ bị đình trệ do bị sa thải hoặc bị hủy bỏ hợp đồng, mà họ còn có thể khó kiếm được bất kỳ công việc nào trong tương lai. Một tình tiết cụ thể đáng nhớ hoặc tệ hơn của việc đạo văn hoàn toàn có thể tàn phá hình ảnh của một người và buộc họ phải thay đổi nghề nghiệp chỉ để tránh bị kỳ thị bởi sự trùng lặp.</p>
+</div>
+</div>
+<div class="row align-items-center mx-0">
+<div class="col-md-6 i_order2">
+<h2 class="hiw_box_t mb-3 fw_600 mt-4">Hợp pháp</h2>
+<p>Ngoài tất cả những khó khăn nghề nghiệp và cá nhân có thể tạo ra, trong những trường hợp cụ thể, còn có những hậu quả pháp lý. Việc sao chép tài liệu có bản quyền để thu lợi có thể dẫn đến việc người đạo văn phải trả một số thiệt hại bằng tiền, thu lợi bất chính và mọi tổn thất tiềm ẩn mà việc sao chép có thể đã gây ra cho người tạo bản gốc. Trong một số trường hợp, việc sao chép dữ liệu thậm chí có thể khiến kẻ đạo văn phải trải qua một số vụ truy tố hình sự mà hình phạt có thể từ tội danh đến phạt tù. <a href="https://plagiarismdetector.net/blog/impact-of-social-media-on-plagiarism/" class="linksclrs">“Tác động của phương tiện truyền thông xã hội đối với đạo văn” </a></p>
+<p>Vì vậy, một khi sử dụng dịch vụ quét đạo văn trước khi gửi bất kỳ nội dung nào, để xem bạn có sao chép nội dung hay không là một cách tiếp cận có thể giúp bạn tránh xa bất kỳ sự phân tán nào được trích dẫn. Bằng cách sử dụng công cụ, chúng tôi cũng không phải đợi một thời gian dài để có kết quả, do đó, chi phí cơ hội của việc sử dụng nó cũng không cao. Bạn có thể tận dụng tất cả những lợi thế này và tiết kiệm miễn phí cho mình.</p>
+</div>
+<div class="col-md-6 text-right legal"><img src="https://plagiarismdetector.net/pd-imgs/cop-img4.svg" alt="logo" class="i_order1 pl-lg-5 " loading="lazy" width="652" height="399"></div>
+</div>
+</div>
+</div>
+
+
+
+<div class="clearfix"></div>
+
+<div class="container-fluid">
+<div class="container w768 cv_sec">
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+<div class="panel panel-default accordion_box col-md-12 col-sm-12 col-xs-12 pn">
+<div class="panel-heading" role="tab" id="headingOne">
+    <h2 class="panel-title"> <a class="acordion_link external" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne" rel="nofollow noopener"></a>Định nghĩa về Đạo văn</h2>
+</div>
+<div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+<div class="panel-body acordion_body">
+    <p>Nhưng trước khi kiểm tra chúng ta nên biết, đạo văn là gì?</p>
+    <p>“Hành động nâng cao khi bạn tiếp thu lời nói của một người và biến chúng thành của riêng bạn.</p>
+    <p>Nếu chúng ta nói chuyện theo cách hợp pháp thì việc lấy bản quyền của ai đó và tuyên bố đó là của mình là hành vi đạo văn không cố ý.</p>
+    <p>Trong thế giới của Internet, nó không bị coi là tội phạm mà nó chỉ thể hiện sự gian dối trong tính cách của người đó. Câu hỏi là tại sao nó quan trọng? Chà, trong học thuật, nó có thể khiến mọi người gặp rắc rối nghiêm trọng, nếu bị phát hiện ăn cắp ý tưởng, họ không chỉ phải đối mặt với hình phạt mà còn mất thời gian mà một người mới bắt đầu thể sử dụng để học.</p>
+    <p>Trong không gian mạng này, có thể có nhiều sai sót có thể gây ra sự trùng lặp về nội dung. Một trong những lỗi quan trọng nhất là không đặt dấu ngoặc kép, ngay cả khi bạn không có ý định lấy lời của ai đó mà quên vô ý ghi ghi công hoặc trích dẫn tên, có khả năng nó có thể đặt nội dung hoặc bạn gặp rắc rối nghiêm trọng .</p>
+    <p>Vấn đề phổ biến nhất đối với nội dung ăn cắp bản quyền là bị trục xuất khỏi Trang Kết quả của Công cụ Tìm kiếm (SERP) và các trang web đang hướng tới thứ hạng tốt hơn không thể đáp ứng được điều đó.</p>
+    <p>Do đó this kiểm tra đạo văn này sẽ thông báo cho bạn sau khi phát hiện tất cả các khu vực trên internet mà nó phát hiện thấy sự giống nhau hoặc kiểm tra nội dung trùng lặp.</p>
+    <h3 class="fs16">Tự đạo văn</h3>
+    <p>Quan niệm cho rằng, tự đạo văn là chỉ sao chép tranh của người khác hoặc mượn ý tưởng độc đáo của người khác. Trong suy nghĩ của tôi như "sao chép" và "vay mượn" có thể che đậy mức độ nghiêm trọng của hành vi phạm tội:</p>
+    <p>Theo Từ điển Oxford Đạo văn là:</p>
+    <p><i>Thực hành lấy công việc hoặc ý tưởng của người khác và chuyển chúng thành của riêng mình</i></p>
+    <p>Nói một cách chính xác, đạo văn là một hành vi gian lận. Nó liên quan đến cả việc đánh cắp tác phẩm nghệ thuật của người khác và nói dối nó trong một thời gian.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default accordion_box col-md-12 col-sm-12 col-xs-12 pn">
+<div class="panel-heading" role="tab" id="headingTwo">
+    <h2 class="panel-title"><a class="acordion_link external" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" rel="nofollow noopener">kiểm tra đạo văn hoạt động như thế nào?</a></h2>
+</div>
+<div id="collapseTwo" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingTwo">
+<div class="panel-body acordion_body">
+    <p>Có nghĩa là, làm thế nào để sử dụng Công cụ kiểm tra đạo văn</p>
+    <p>Nó hoàn toàn miễn phí và hoạt động 24/7, sẵn sàng bất cứ khi nào bạn cần. Công cụ này để tránh đạo văn trở thành trợ lý cá nhân, nghĩa là bạn không còn có thể yêu cầu thuê trợ lý để kiểm tra tính độc đáo của bài viết.</p>
+<ul>
+<li>
+<p>Sao chép và Dán văn bản của bạn vào hộp tìm kiếm</p>
+</li>
+<li>
+<p>Hoặc, Tải lên tệp Tài liệu hoặc Văn bản của bạn bằng nút Chọn tệp.</p>
+<img loading="lazy" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/441584969_1910865092686136_4116917379302009644_n.png?stp=dst-png_s403x403&_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeFt6N-MHDTTsh1wy0kK56YH8ii1wsuL-1HyKLXCy4v7UaIgb51x991Big7CSFhk264jQw3LtDQIZzJtXRtbSfjV&_nc_ohc=rZr7hjVxgxMQ7kNvgEEJAOj&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_Q7cD1QFWz7QLtcWI_EAM_OMnjcfwF5FEJ8Ayl6azTmB4UjRTsg&oe=667B622C" alt="Khu vực văn bản của trình kiểm tra đạo văn" class="img-responsive">
+</li>
+<li>
+<p>Nhấp vào “kiểm tra đạo văn”</p>
+</li>
+<li>
+<p>Khi yêu cầu của bạn được gửi đi để xử lý, kết quả sẽ được hiển thị sau vài giây, vì chúng tôi đã làm việc để Đẩy nhanh quá trình mà không có độ chính xác cao.</p>
+</li>
+<li>
+<p>Trong trường hợp, khi tìm thấy các kết quả trùng lặp, công cụ sẽ hiển thị kết quả theo phần trăm ý nghĩa (%) của Tính duy nhất và (%) của Đạo văn và văn bản có liên quan (Văn bản thành Độc nhất) cũng như nguồn gốc của nó. Nó là dễ dàng như vậy.</p>
+<img loading="lazy" src="https://scontent.xx.fbcdn.net/v/t1.15752-9/444781109_354651197252103_4710360963199302401_n.png?stp=dst-png_s403x403&_nc_cat=111&ccb=1-7&_nc_sid=5f2048&_nc_eui2=AeF6VX1ZWYqfwPmopPFCWReAlBF2Ti4gFY2UEXZOLiAVjQv_4MPi0OOl1xF-xPHksp58jeTqJr7q4ZaEAiWNEYGF&_nc_ohc=-vVLCzi6fwgQ7kNvgE2pBUI&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_Q7cD1QEFWiCLLk0wYgF8G_geM91FQYGhBbHY7nxD6y26RiRVjQ&oe=667B7B1D" alt="kết quả của người kiểm tra đạo văn" class="img-responsive">
+<p>(Một mẹo “Trong trường hợp phát hiện ra đạo văn, có một tùy chọn tuyệt vời (nút) để làm cho nó trở nên độc đáo với một công cụ siêu Diễn giải.”)</p>
+</li>
+<li>
+<p><strong>Nếu không tìm thấy kết quả phù hợp nào, một thông báo sẽ hiển thị “Không phát hiện ra đạo văn!”</strong></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
