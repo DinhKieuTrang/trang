@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Plagiarism Checker</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         body {
             background-image: url('https://img.freepik.com/free-photo/different-shape-flower-cutout-with-copy-space-background_23-2148188405.jpg');
@@ -38,97 +38,92 @@
             border-radius: 4px;
         }
     </style>
-    <script>
-        function showInputFields(type, num) {
-            const textField = document.getElementById(`text${num}Field`);
-            const fileField = document.getElementById(`file${num}Field`);
-            const urlField = document.getElementById(`url${num}Field`);
-            
-            textField.style.display = 'none';
-            fileField.style.display = 'none';
-            urlField.style.display = 'none';
 
-            if (type === 'text') {
-                textField.style.display = 'block';
-            } else if (type === 'file') {
-                fileField.style.display = 'block';
-            } else if (type === 'url') {
-                urlField.style.display = 'block';
-            }
+    <style>
+        body {
+            background-color: #f8f9fa;
+            padding-top: 20px;
         }
-    </script>
+        .container {
+            max-width: 900px;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .result-container {
+            margin-top: 30px;
+        }
+        .chart-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .sources-container {
+            margin-top: 20px;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background-color: #f8f9fa;
+            padding: 15px;
+            border-radius: 5px;
+            border: 1px solid #dee2e6;
+        }
+        .form-section {
+            margin-bottom: 30px;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
-        <h1 class="text-center">Plagiarism Checker</h1>
-        <form method="POST" enctype="multipart/form-data">
-            <h4>Input Text 1</h4>
-            <div class="form-group">
-                <label for="inputType1">Select input type</label>
-                <select class="form-control" id="inputType1" name="inputType1" onchange="showInputFields(this.value, 1)">
-                    <option value="text">Enter Text</option>
-                    <option value="file">Upload a file</option>
-                    <option value="url">Enter URL</option>
-                </select>
+        <h1 class="text-center mb-4">Plagiarism Checker</h1>
+        <form method="post" enctype="multipart/form-data">
+            <script async src="https://cse.google.com/cse.js?cx=b664f8aebfede4584">
+            </script>
+            <div class="gcse-search"></div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <h4>Text 1</h4>
+                    <textarea class="form-control form-section" id="text1" name="text1" rows="5" placeholder="Enter text or leave blank to upload a file or URL"></textarea>
+                    <input type="file" class="form-control-file form-section" id="file1" name="file1">
+                    <input type="url" class="form-control form-section" id="url1" name="url1" placeholder="Enter URL">
+                </div>
+                <div class="form-group col-md-6">
+                    <h4>Text 2</h4>
+                    <textarea class="form-control form-section" id="text2" name="text2" rows="5" placeholder="Enter text or leave blank to upload a file or URL"></textarea>
+                    <input type="file" class="form-control-file form-section" id="file2" name="file2">
+                    <input type="url" class="form-control form-section" id="url2" name="url2" placeholder="Enter URL">
+                </div>
             </div>
-            <div class="form-group" id="text1Field">
-                <label for="text1">Text 1</label>
-                <textarea class="form-control" id="text1" name="text1" rows="5" placeholder="Enter text to check"></textarea>
-            </div>
-            <div class="form-group" id="file1Field" style="display: none;">
-                <label for="file1">Upload file</label>
-                <input type="file" class="form-control-file" id="file1" name="file1">
-            </div>
-            <div class="form-group" id="url1Field" style="display: none;">
-                <label for="url1">URL 1</label>
-                <input type="text" class="form-control" id="url1" name="url1" placeholder="Enter URL 1">
-            </div>
-            <hr>
-            <h4>Compare With Text 2</h4>
-            <div class="form-group">
-                <label for="inputType2">Select input type</label>
-                <select class="form-control" id="inputType2" name="inputType2" onchange="showInputFields(this.value, 2)">
-                    <option value="text">Enter Text</option>
-                    <option value="file">Upload a file</option>
-                    <option value="url">Enter URL</option>
-                </select>
-            </div>
-            <div class="form-group" id="text2Field">
-                <label for="text2">Text 2</label>
-                <textarea class="form-control" id="text2" name="text2" rows="5" placeholder="Enter text to compare with"></textarea>
-            </div>
-            <div class="form-group" id="file2Field" style="display: none;">
-                <label for="file2">Upload file</label>
-                <input type="file" class="form-control-file" id="file2" name="file2">
-            </div>
-            <div class="form-group" id="url2Field" style="display: none;">
-                <label for="url2">URL 2</label>
-                <input type="text" class="form-control" id="url2" name="url2" placeholder="Enter URL 2">
-            </div>
-            <button type="submit" class="btn btn-primary btn-block">Check Similarity</button>
-            <button type="submit" class="btn btn-primary btn-block">Reset</button>
+            <button type="submit" class="btn btn-primary btn-block">Check Plagiarism</button>
         </form>
-        
         {% if similarity_percentage is not none %}
-        <div class="result text-center">
-            <p class="similarity">Similarity: {{ similarity_percentage }}%</p>
-            <div class="text-columns">
-                <div>
-                    <h4>Text 1:</h4>
-                    <pre>{{ text1 }}</pre>
-                </div>
-                <div>
-                    <h4>Text 2:</h4>
-                    <pre>{{ text2 }}</pre>
-                </div>
+        <div class="result-container">
+            <h2 class="text-center">Similarity: {{ similarity_percentage }}%</h2>
+            <div class="chart-container">
+                <img src="{{ chart_url }}" alt="Plagiarism Chart" class="img-fluid">
+            </div>
+            <div class="text-container mt-4">
+                <h3>Text 1:</h3>
+                <pre>{{ text1 }}</pre>
+                <h3>Text 2:</h3>
+                <pre>{{ text2 }}</pre>
+            </div>
+            <div class="sources-container">
+                <h3>Sources:</h3>
+                <ul class="list-group">
+                    {% for source in sources %}
+                    <li class="list-group-item"><a href="{{ source }}" target="_blank">{{ source }}</a></li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
         {% endif %}
     </div>
-
-
-
-
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
 
 
 <div class="clearfix"></div>
@@ -310,7 +305,6 @@
 
 
 
-
 <div class="px-3 py-5 cop_bg">
 <div class="main_area mx-auto hiw mt-4 mtc mb-5">
 <h2 class="hiw_heading text-center fw_700">Hậu Quả Của Đạo Văn</h2>
@@ -348,9 +342,7 @@
 </div>
 
 
-
 <div class="clearfix"></div>
-
 <div class="container-fluid">
 <div class="container w768 cv_sec">
 <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -409,7 +401,6 @@
 </div>
 </div>
 </div>
-
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
